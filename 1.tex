@@ -1,0 +1,768 @@
+\documentclass[11pt]{llncs}
+\usepackage{preamble}
+
+\begin{document}
+\title{
+Set Theory Class 2018 - 2019\\
+Exercise Set 1}
+\date{\today}
+\author{Dionysis Zindros\\
+    \email{dionyziz@di.uoa.gr}}
+\institute{
+National and Kapodistrian University of Athens}
+\maketitle
+\noindent
+\makebox[\linewidth]{\small \today}
+
+\thispagestyle{plain}
+
+\section*{Exercise 1}
+\begin{lemma}
+$\left<A, B\right> = \left<C, D\right> \leftrightarrow (A = C \land B = D)$.
+\end{lemma}
+\begin{proof}
+  \item $(\leftarrow)$
+  Suppose $A = C \land B = D$. Then $A = C$ and $B = D$. Therefore:
+
+  \begin{align*}
+                &\left<A, B\right> = \left<A, B\right>\\
+    \Rightarrow &\left<A, B\right> = \left<C, B\right>\\
+    \Rightarrow &\left<A, B\right> = \left<C, D\right>
+  \end{align*}
+
+  \item $(\rightarrow)$
+  Suppose $\left<A, B\right> = \left<C, D\right>$. By the Kuratowski definition:
+
+  \begin{alignat*}{3}
+                       &&\left<A, B\right> &= \left<C, D\right>\\
+    & \Rightarrow\quad &\{\{A\}, \{A, B\}\} &= \{\{C\}, \{C, D\}\}
+  \end{alignat*}
+
+  We distinguish two cases.
+
+  \textbf{Case 1:} $A = B$.
+
+  Then $\{A, B\} = \{A, A\} = \{A\}$ and so $\{\{A\}, \{A, B\}\} = \{\{A\}\}$.
+  Hence, $\{\{A\}\} = \{\{C\}, \{C, D\}\}$ and by extensionality
+  $\{A\} = \{C, D\}$. Hence $C = D = A$ and we are done.
+
+  \textbf{Case 2:} $A \neq B$.
+
+  Then $\{A\} \neq \{A, B\}$, hence by extensionality $\{C\} \neq \{C, D\}$.
+  But it cannot be that $\{A\} = \{C, D\}$ nor $\{A, B\} = \{C\}$,
+  therefore $\{A\} = \{C\}$ and $\{A, B\} = \{C, D\}$. Hence $A = C$ and
+  $B = D$.
+  \qed
+\end{proof}
+
+\section*{Exercise 2}
+
+\begin{lemma}
+  \[
+    \left(\bigcup (A_i)_{i \in I}\right)' = \bigcap\left(A_i'\right)_{i \in I}
+  \]
+\end{lemma}
+\begin{proof}
+  By extensionality and the definition of $\bigcup, \bigcap$.
+
+  \begin{minipage}[t]{0.49\textwidth}
+    \begin{alignat*}{3}
+                            && x &\in \left(\bigcup (A_i)_{i \in I}\right)'\\
+      &\Leftrightarrow\quad & x &\in S \setminus \left(\bigcup (A_i)_{i \in I}\right)\\
+      &\Leftrightarrow\quad & x &\in S \land \lnot \left(x \in \left(\bigcup (A_i){i \in I}\right)\right)\\
+      &\Leftrightarrow\quad & x &\in S \land \lnot (\exists D \in (A_i)_{i \in I}: x \in D)\\
+      &\Leftrightarrow\quad & x &\in S \land \lnot (\exists i \in I: x \in A_i)\\
+      &\Leftrightarrow\quad & x &\in S \land \forall i \in I: x \not\in A_i
+    \end{alignat*}
+  \end{minipage}
+  \hskip 0.01\textwidth
+  \vline
+  \hskip 0.01\textwidth
+  \begin{minipage}[t]{0.49\textwidth}
+    \begin{alignat*}{3}
+                            && x &\in \bigcap\left(A_i'\right)_{i \in I}\\
+      &\Leftrightarrow\quad & \forall D &\in (A_i')_{i \in I}: x \in D\\
+      &\Leftrightarrow\quad & \forall i &\in I: x \in A_i'\\
+      &\Leftrightarrow\quad & \forall i &\in I: x \in (S \setminus A_i)\\
+      &\Leftrightarrow\quad & \forall i &\in I: x \in S \land x \not\in A_i\\
+      &\Leftrightarrow\quad & x &\in S \land \forall i \in I: x \not\in A_i
+    \end{alignat*}
+  \end{minipage}
+  \qed
+\end{proof}
+
+\begin{lemma}
+  \[
+    \left(\bigcap (A_i)_{i \in I}\right)' = \bigcup \left(A_i'\right)_{i \in I}
+  \]
+\end{lemma}
+\begin{proof}
+  As above.
+
+  \begin{minipage}[t]{0.49\textwidth}
+    \begin{alignat*}{3}
+                           && x &\in \left(\bigcap (A_i)_{i \in I}\right)'\\
+      &\Leftrightarrow\quad & x &\in S \setminus \left(\bigcap (A_i)_{i \in I}\right)\\
+      &\Leftrightarrow\quad & x &\in S \land \lnot \left(x \in \left(\bigcap (A_i)_{i \in I}\right)\right)\\
+      &\Leftrightarrow\quad & x &\in S \land \lnot (\forall D \in (A_i)_{i \in I}: x \in D)\\
+      &\Leftrightarrow\quad & x &\in S \land \lnot (\forall i \in I: x \in A_i)\\
+      &\Leftrightarrow\quad & x &\in S \land \exists i \in I: x \not\in A_i
+    \end{alignat*}
+  \end{minipage}
+  \hskip 0.01\textwidth
+  \vline
+  \hskip 0.01\textwidth
+  \begin{minipage}[t]{0.49\textwidth}
+    \begin{alignat*}{3}
+                           && x &\in \bigcup \left(A_i'\right)_{i \in I}\\
+      &\Leftrightarrow\quad & \exists D &\in (A_i')_{i \in I}: x \in D\\
+      &\Leftrightarrow\quad & \exists i &\in I: x \in A_i'\\
+      &\Leftrightarrow\quad & \exists i &\in I: x \in S \setminus A_i\\
+      &\Leftrightarrow\quad & \exists i &\in I: x \in S \land x \not\in A_i\\
+      &\Leftrightarrow\quad & x &\in S \land \exists i \in I: x \not\in A_i\\
+    \end{alignat*}
+  \end{minipage}
+  \qed
+\end{proof}
+
+\section*{Exercise 3}
+\begin{lemma}
+  $A \subseteq \mathcal{P}(\bigcup A)$
+\end{lemma}
+\begin{proof}
+  \begin{alignat*}{3}
+                         && A \subseteq \mathcal{P}(\bigcup A) \\
+    &\Leftrightarrow\quad & \forall x \in A: x \in \mathcal{P}(\bigcup A)\\
+    &\Leftrightarrow\quad & \forall x \in A: x \subseteq \bigcup A\\
+    &\Leftrightarrow\quad & \forall x \in A: \forall y \in x: y \in \bigcup A\\
+    &\Leftrightarrow\quad & \forall x \in A: \forall y \in x: \exists D \in A: y \in D
+  \end{alignat*}
+
+  Let arbitrary $x \in A$ and arbitrary $y \in x$. It suffices to show that
+  $\exists D \in A: y \in D$. Indeed $D = x$.
+  \qed
+\end{proof}
+
+We observe that the above lemma holds with equality when $A$ is the powerset of
+some set:
+
+\begin{lemma}
+  $A = \mathcal{P}(\bigcup A) \leftrightarrow \exists B: A = \mathcal{P}(B)$
+\end{lemma}
+\begin{proof}
+  \item $(\rightarrow)$ Letting $B = \bigcup A$ satisfies the condition.
+  \item $(\leftarrow)$ Suppose $A = \mathcal{P}(B)$ for some $B$. Then
+        $\bigcup A = B$ and the condition holds.
+  \qed
+\end{proof}
+
+\begin{lemma}
+  $\mathcal{P}(A) \cap \mathcal{P}(B) = \mathcal{P}(A \cap B)$
+\end{lemma}
+\begin{proof}
+  \begin{minipage}[t]{0.49\textwidth}
+    \begin{alignat*}{3}
+                           && x \in \mathcal{P}(A) \cap \mathcal{P}(B)\\
+      &\Leftrightarrow\quad & x \in \mathcal{P}(A) \land x \in \mathcal{P}(B)\\
+      &\Leftrightarrow\quad & x \subseteq A \land x \subseteq B\\
+      &\Leftrightarrow\quad & (\forall y \in x: y \in A) \land (\forall y \in x: y \in B)\\
+      &\Leftrightarrow\quad & \forall y \in x: (y \in A \land y \in B)
+    \end{alignat*}
+  \end{minipage}
+  \hskip 0.01\textwidth
+  \vline
+  \hskip 0.01\textwidth
+  \begin{minipage}[t]{0.45\textwidth}
+    \begin{alignat*}{3}
+                           && x \in \mathcal{P}(A \cap B)\\
+      &\Leftrightarrow\quad & x \subseteq A \cap B\\
+      &\Leftrightarrow\quad & \forall y \in x: y \in A \cap B\\
+      &\Leftrightarrow\quad & \forall y \in x: (y \in A \land y \in B)
+    \end{alignat*}
+  \end{minipage}
+  \qed
+\end{proof}
+
+\begin{lemma}
+  $\mathcal{P}(A) \cup \mathcal{P}(B) \subseteq \mathcal{P}(A \cup B)$
+\end{lemma}
+\begin{proof}
+  \begin{minipage}[t]{0.49\textwidth}
+    \begin{alignat*}{3}
+                           && x \in \mathcal{P}(A) \cup \mathcal{P}(B)\\
+      &\Leftrightarrow\quad & x \in \mathcal{P}(A) \lor x \in \mathcal{P}(B)\\
+      &\Leftrightarrow\quad & x \subseteq A \lor x \subseteq B\\
+      &\Leftrightarrow\quad & (\forall y \in x: y \in A) \lor (\forall y \in x: y \in B)
+    \end{alignat*}
+  \end{minipage}
+  \hskip 0.01\textwidth
+  \vline
+  \hskip 0.01\textwidth
+  \begin{minipage}[t]{0.45\textwidth}
+    \begin{alignat*}{3}
+                           && x \in \mathcal{P}(A \cup B)\\
+      &\Leftrightarrow\quad & x \subseteq A \cup B\\
+      &\Leftrightarrow\quad & \forall y \in x: y \in A \cup B\\
+      &\Leftrightarrow\quad & \forall y \in x: (y \in A \lor y \in B)
+    \end{alignat*}
+  \end{minipage}
+
+  ~
+
+  We observe that $(\forall y \in x: y \in A) \lor (\forall y \in x: y \in B)
+  \rightarrow \forall y \in x: (y \in A \lor y \in B)$.
+  \qed
+\end{proof}
+
+In this case, equality holds if $A$ and $B$ have a subset relationship, as made
+formal in the following lemma:
+
+\begin{lemma}
+  $
+  (\mathcal{P}(A) \cup \mathcal{P}(B) = \mathcal{P}(A \cup B))
+  \leftrightarrow
+  (A \subseteq B \lor B \subseteq A)
+  $
+\end{lemma}
+\begin{proof}
+  \item $(\rightarrow)$
+  Suppose for contradiction that the sets do not have a subset relationship.
+  Then there are elements $x \in A \setminus B$ and $y \in B \setminus A$.
+  Then $\{x, y\}$ is in $\mathcal{P}(A \cup B)$ but in neither of
+  $\mathcal{P}(A), \mathcal{P}(B)$.
+
+  \item $(\leftarrow)$
+  Suppose without loss of generality that $A \subseteq B$. Then $A \cup B = B$
+  and $\mathcal{P}(A \cup B) = \mathcal{P}(B)$.
+  For the powersets we have that $\mathcal{P}(A) \subseteq \mathcal{P}(B)$ (by
+  Lemma~\ref{lem.powerset-subset}) and
+  $\mathcal{P}(A) \cup \mathcal{P}(B) = \mathcal{P}(B)$. The equality follows.
+
+  \qed
+\end{proof}
+
+\begin{lemma}\label{lem.powerset-subset}
+  $A \subseteq B \leftrightarrow \mathcal{P}(A) \subseteq \mathcal{P}(B)$
+\end{lemma}
+\begin{proof}
+  \item $(\rightarrow)$
+  Suppose $A \subseteq B$. Let $D \in \mathcal{P}(A)$. It suffices to prove that
+  $D \in \mathcal{P}(B)$. We know that $D \subseteq A$. By the transitivity of
+  the subset relation, we obtain that $D \subseteq B$, which proves that $D \in
+  \mathcal{P}(B)$.
+
+  \item $(\leftarrow)$
+  \begin{alignat*}{3}
+                         && \mathcal{P}(A) \subseteq \mathcal{P}(B)\\
+    &\Leftrightarrow\quad & \forall x \in \mathcal{P}(A): x \in \mathcal{P}(B)\\
+    &\Leftrightarrow\quad & \forall x: (x \subseteq A \rightarrow x \subseteq B)\\
+    &\Leftrightarrow\quad & \forall x: ((\forall y \in x: y \in A) \rightarrow (\forall y \in x: y \in B))
+  \end{alignat*}
+
+  Letting $x = \{a\}$ for arbitrary $a$ in the above, we obtain that
+  $(\forall y \in \{a\}: y \in A) \rightarrow (\forall y \in \{a\}: y \in B)$,
+  which, by extensionality, gives
+  $a \in A \rightarrow a \in B$. Since $a$ was arbitrary, we obtain that
+  $\forall a: a \in A \rightarrow a \in B$, which, by definition, gives $A \subseteq B$.
+  \qed
+\end{proof}
+
+\begin{lemma}
+  $A = B \leftrightarrow \mathcal{P}(A) = \mathcal{P}(B)$
+\end{lemma}
+\begin{proof}
+  \item $(\rightarrow)$ By the logical axioms of equality.
+  \item $(\leftarrow)$ Let $\mathcal{P}(A) = \mathcal{P}(B)$ and suppose for
+  contradiction that $A \neq B$. Then suppose without loss of generality that
+  $x \in A \setminus B$.
+  Then $\{x\} \in \mathcal{P}(A) \setminus \mathcal{P}(B)$.
+  \qed
+\end{proof}
+
+\section*{Exercise 4}
+\begin{lemma}
+  $\emptyset$ is transitive.
+\end{lemma}
+\begin{proof}
+  Vacuously. \qed
+\end{proof}
+
+\begin{lemma}\label{lem:transitive-cup}
+  If $A$ is transitive, then so is $A \cup \{A\}$.
+\end{lemma}
+\begin{proof}
+  Let arbitrary $x \in A \cup \{A\}$. If $x \in A$, then by the transitivity of
+  $A$ we know that $x \subseteq A$, therefore $x \subseteq A \cup \{A\}$. If
+  $x \not\in A$ then $x = A$, and so $x \subseteq A \cup \{A\}$.
+  \qed
+\end{proof}
+
+\begin{lemma}
+  If $A$ is transitive, then so is $\bigcup (A \cup \{A\})$.
+\end{lemma}
+\begin{proof}
+  Let arbitrary $x \in \bigcup (A \cup \{A\})$. Then there is some
+  $D \in A \cup \{A\}$ such that $x \in D$. From Lemma~\ref{lem:transitive-cup},
+  $A \cup \{A\}$ is transitive, therefore $D \subseteq A \cup \{A\}$. Therefore
+  $x \in A \cup \{A\}$, and so $x \subseteq \bigcup (A \cup \{A\})$.
+  \qed
+\end{proof}
+
+\section*{Exercise 5}
+The set theoretic predicate satisfied exactly by those functions
+$f: A \longrightarrow B$ is illustrated in Formula~\ref{formula:func}. While the
+formula can be written in a shorter form (observing that, for instance, one can
+use the projection operators on the ordered pair for totality verification), we
+feel the verbose form where the same construction is used for the same semantics
+aids in readability.
+
+\begin{figure}
+\begin{algorithm}[H]
+  \caption{\label{formula:func}
+      The well-formed set theoretic formula $\Phi(f)$ describing a function
+      $f: A \rightarrow B$}
+  \begin{algorithmic}[0]
+    \State{$($}
+    \Indent
+      \State{$\forall v_1: \forall v_2: ($}
+      \Comment{Look at every element of the function}
+      \Indent
+        \State{$(v_1 \in f \land v_2 \in f) \rightarrow ($}
+        \Indent
+          \State{$\exists x_1: \exists y_1: \exists x_2: \exists y_2:$}
+          \Indent
+            \State{$($}
+            \Indent
+              \State{$x_1 \in A \land y_1 \in B$}
+              \Comment{Verify domain and range}
+            \EndIndent
+            \State{$) \land ($}
+            \Comment{Unpack $\left<x_1, y_1\right> = v_1$}
+            \Indent
+              \State{$\exists X_1: \exists Y_1: ($}
+              \Indent
+                \State{$(x_1 \in X_1 \land \forall z \in X_1: z = x_1) \land$}
+                \Comment{Ensure $X_1 = \{x_1\}$}
+                \State{$(x_1 \in Y_1 \land y_1 \in Y_1 \land \forall z: (z \in Y_1 \rightarrow (z = x_1 \lor z = y_1)))\land$}
+                \Comment{Ensure $Y_1 = \{x_1, y_1\}$}
+                \State{$(X_1 \in v_1 \land Y_1 \in v_1 \land \forall z: (z \in v_1 \rightarrow (v_1 = X_1 \lor z = Y_1)))$}
+                \Comment{Ensure $v_1 = \{X_1, Y_1\}$}
+              \EndIndent
+              \State{$)$}
+            \EndIndent
+            \State{$) \land ($}
+            \Comment{Unpack $\left<x_2, y_2\right> = v_2$}
+            \Indent
+              \State{$\exists X_2: \exists Y_2: ($}
+              \Indent
+                \State{$(x_2 \in X_2 \land \forall z \in X_2: z = x_2) \land$}
+                \Comment{Ensure $X_2 = \{x_2\}$}
+                \State{$(x_2 \in Y_2 \land y_2 \in Y_2 \land \forall z: (z \in Y_2 \rightarrow (z = x_2 \lor z = y_2)))\land$}
+                \Comment{Ensure $Y_2 = \{x_2, y_2\}$}
+                \State{$(X_2 \in v_2 \land Y_2 \in v_2 \land \forall z: (z \in v_2 \rightarrow (v_2 = X_2 \lor z = Y_2)))$}
+                \Comment{Ensure $v_2 = \{X_2, Y_2\}$}
+              \EndIndent
+              \State{$)$}
+            \EndIndent
+            \State{$) \land ($}
+            \Indent
+              \State{$x_1 = x_2 \rightarrow y_1 = y_2$}
+              \Comment{Ensure the function is single-valued}
+            \EndIndent
+            \State{$)$}
+          \EndIndent
+        \EndIndent
+        \State{$)$}
+      \EndIndent
+      \State{$)$}
+    \EndIndent
+    \State{$) \land ($}
+    \Indent
+      \State{$\forall x: ($}
+      \Indent
+        \State{$x \in A \rightarrow ($}
+        \Comment{Ensure the function is total}
+        \Indent
+          \State{$\exists y: ($}
+            \Indent
+              \State{$y \in B \land ($}
+              \Indent
+                \State{$\exists V: ($}
+                \Indent
+                  \State{$V \in f \land$}
+                  \State{$\exists X: \exists Y: ($}
+                  \Comment{Unpack $V = \left<x, y\right>$}
+                  \Indent
+                    \State{$(x \in X \land \forall z \in X: z = x) \land$}
+                    \Comment{Ensure $X = \{x\}$}
+                    \State{$(x \in Y \land y \in Y \land \forall z: (z \in Y \rightarrow (z = x \lor z = y)))\land$}
+                    \Comment{Ensure $Y = \{x, y\}$}
+                    \State{$(X \in v \land Y \in v \land \forall z: (z \in v \rightarrow (v = X \lor z = Y)))$}
+                    \Comment{Ensure $v = \{X, Y\}$}
+                  \EndIndent
+                  \State{$)$}
+                \EndIndent
+                \State{$)$}
+              \EndIndent
+              \State{$)$}
+            \EndIndent
+          \State{$)$}
+        \EndIndent
+        \State{$)$}
+      \EndIndent
+      \State{$)$}
+    \EndIndent
+    \State{$)$}
+  \end{algorithmic}
+\end{algorithm}
+\end{figure}
+
+\section*{Exercise 6}
+\begin{lemma}
+  $\forall A: (A \neq \emptyset \rightarrow \exists \bigcap A)$.
+\end{lemma}
+\begin{proof}
+  As $A \neq \emptyset$, therefore $\exists x \in A$, so let $x \in A$.
+  By the \emph{axiom schema of specification}, we obtain the existence of
+  $\{y: y \in x \land \forall z \in A: y \in z\}$. But this is $\bigcap A$.
+  \qed
+\end{proof}
+
+\begin{lemma}
+  $\forall A: \exists \{x \in A: \mathcal{P}(x)\}$.
+\end{lemma}
+\begin{proof}
+  By the \emph{axiom schema of replacement} applying $\mathcal{P}$ on $A$.
+  \qed
+\end{proof}
+
+\begin{lemma}
+  $\forall A, B: \exists \{A \cap x: x \in B\}$
+\end{lemma}
+\begin{proof}
+  By the \emph{axiom schema of replacement} applying $A \cap x$ on $B$.
+  \qed
+\end{proof}
+
+\begin{lemma}\label{lem:cartesian-existence}
+  $\forall A, B: \exists A \times B$
+\end{lemma}
+\begin{proof}
+  By the \emph{axiom of union} we obtain the existence of $A \cup B$. By the
+  \emph{axiom of power set} we obtain the existence $\mathcal{P}(A \cup B)$ and
+  subsequently $\mathcal{P}(\mathcal{P}(A \cup B))$. Applying the \emph{axiom
+  schema of specification}, we obtain the existence of
+
+  \[
+    \{x: x \in \mathcal{P}(\mathcal{P}(A \cup B)) \land \exists a \in A: \exists b \in B: x = \left<a, b\right>\}
+    ~.
+  \]
+
+  But this is $A \times B$.
+  \qed
+\end{proof}
+
+\begin{lemma}\label{lem:simple-relations-existence}
+  $\forall A, B: \exists \{R: R \text{ is a relation between } A \text{ and } B\}$
+\end{lemma}
+\begin{proof}
+  From Lemma~\ref{lem:cartesian-existence}, we obtain the existence of
+  $A \times B$. Applying the \emph{axiom of power set}, we obtain the existence
+  of $\mathcal{P}(A \times B)$, which is the set in question.
+  \qed
+\end{proof}
+
+\begin{lemma}\label{lem:all-relations-existence}
+  $\forall A, B: \exists \{X \times Y: X \in A \land Y \in B\}$
+\end{lemma}
+\begin{proof}
+  From the \emph{axiom of union}, $\bigcup A$ and $\bigcup B$ exist. Applying
+  Lemma~\ref{lem:cartesian-existence}, we deduce that
+  $(\bigcup A) \times \bigcup B$ exists. From the \emph{axiom of power set},
+  we obtain the existence of $\mathcal{P}((\bigcup A) \times \bigcup B)$.
+
+  Consider some $X \in A$ and $Y \in B$. $X \times Y$ is the complete relation
+  between $X$ and $Y$. But any relation between $X$ and $Y$ is also a relation
+  between $\bigcup A$ and $\bigcup B$, hence in
+  $\mathcal{P}((\bigcup A) \times (\bigcup B))$.
+  Therefore, we can apply the \emph{axiom schema of specification} to obtain the
+  existence of
+
+  \[
+  \{x: x \in \mathcal{P}((\bigcup A) \times \bigcup B) \land \exists X \in A: \exists Y \in B: x = X \times Y\}
+  ~.
+  \]
+
+  This is the set in question.
+  \qed
+\end{proof}
+
+\begin{lemma}
+  $\forall A, B: \exists ~^A B$
+\end{lemma}
+\begin{proof}
+  From Lemma~\ref{lem:simple-relations-existence}, we obtain the existence of
+  $S = \{R: R \text{ is a relation between } A \text{ and } B\}$. But every
+  function is a relation. Applying the \emph{axiom schema of specification} with
+  the predicate illustrated in Formula~\ref{formula:func} requiring $f$ to be a
+  function $A \longrightarrow B$, we obtain the existence of $\{x: x \in S
+  \land \Phi(x)\}$, which is the set in question.
+  \qed
+\end{proof}
+
+\section*{Exercise 7}
+\begin{lemma}\label{lem:one-to-one-subset}
+  Let $f: A \longrightarrow B$ be a function and $X \subseteq A$. Then
+  $X \subseteq f^{-1}[f[X]]$.
+\end{lemma}
+\begin{proof}
+  Let arbitrary $x \in X$. As $X \subseteq A$, so $x \in A$, therefore there
+  exists some $y$ such that $\left<x, y\right> \in f$. Hence $y \in f[X]$.
+  But $\left<y, x\right> \in f^{-1}$, so $x \in f^{-1}[f[X]]$.
+  \qed
+\end{proof}
+
+Equality will hold for the subsets $X$ the following property, illustrated in
+Figure~\ref{fig:break-range}.
+
+\begin{figure}[H]\label{fig:break-range}
+    \caption{A function breaking the equality of Lemma~\ref{lem:range-eq}.
+             An element outside of $X$ has the same image as an element of $X$.}
+    \centering
+    \includegraphics[width=0.25\columnwidth,keepaspectratio]{break-range.pdf}
+\end{figure}
+
+\begin{lemma}\label{lem:range-eq}
+  Let $f: A \longrightarrow B$ be a function and $X \subseteq A$.
+  $X = f^{-1}[f[X]]$
+  iff
+  $\forall x \in X: \forall x' \in A \setminus X: f(x) \neq f(x')$.
+\end{lemma}
+\begin{proof}
+  \item $(\rightarrow)$
+  Suppose $X = f^{-1}[f[X]]$.
+  Let arbitrary $x \in X, x' \in A \setminus X$ and suppose for contradiction
+  that $f(x) = f(x')$. Then $f(x) \in f[X]$ and so $x' \in f^{-1}[f[X]]$.
+  But then $x' \in X$, which is a contradiction.
+
+  \item $(\leftarrow)$
+  Suppose
+  $\forall x \in X: \forall x' \in A \setminus X: f(x) \neq f(x')$.
+  Let arbitrary $x \in f^{-1}[f[X]]$. Then there is some $y \in f[X]$ such that
+  $\left<y, x\right> \in f^{-1}$, and so $\left<x, y\right> \in f$. But then
+  there is some $x' \in X$ such that $\left<x', y\right> \in f$. Therefore $x
+  \in X$. So $f^{-1}[f[X]] \subseteq X$ and therefore, applying
+  Lemma~\ref{lem:one-to-one-subset}, we obtain $X = f^{-1}[f[X]]$.
+  \qed
+\end{proof}
+
+\begin{lemma}
+  Let $f: A \longrightarrow B$ be a function and $Y \subseteq B$. Then
+  $f[f^{-1}[Y]] \subseteq Y$.
+\end{lemma}
+\begin{proof}
+  Let arbitrary $y \in f[f^{-1}[Y]]$. Then
+  $\exists x \in f^{-1}[Y]: \left<x, y\right> \in f$. As
+  $x \in f^{-1}[Y]$, therefore $\exists y' \in Y: \left<y', x\right> \in
+  f^{-1}$. But then $\left<x, y'\right> \in f$. By virtue of $f$ being a
+  function, we have that $y' = y$ and so $y \in Y$.
+  \qed
+\end{proof}
+
+Equality will hold for the subsets $Y$ with the following property, illustrated
+in Figure~\ref{fig:break-domain}.
+
+\begin{figure}[H]\label{fig:break-domain}
+    \caption{A function breaking the equality of Lemma~\ref{lem:domain-eq}.
+             An element of $Y$ does not have a preimage.}
+    \centering
+    \includegraphics[width=0.25\columnwidth,keepaspectratio]{break-domain.pdf}
+\end{figure}
+
+\begin{lemma}\label{lem:domain-eq}
+  Let $f: A \longrightarrow B$ be a function and $Y \subseteq B$.
+  $f[f^{-1}[Y]] = Y$
+  iff
+  $\restr{f}{f^{-1}[Y]}$ is \emph{onto} $Y$.
+\end{lemma}
+\begin{proof}
+  \item $(\rightarrow)$
+  Suppose $f[f^{-1}[Y]] = Y$. Let arbitrary $y \in Y$. Then
+  $y \in f[f^{-1}[Y]]$. Therefore, there is some $x \in f^{-1}[Y]$ such that
+  $\left<x, \right> \in f$. But this means that
+  $\left<x, y\right> \in \restr{f}{f^{-1}[Y]}$.
+  \item $(\leftarrow)$
+  Suppose $\restr{f}{f^{-1}[Y]}$ is \emph{onto} $Y$.
+  Let arbitrary $y \in Y$. Then there exists some $x$ such that
+  $\left<x, y\right> \in \restr{f}{f^{-1}[Y]}$. So $\left<x, y\right> \in f$
+  and $x \in f^{-1}[Y]$, so $y \in f[f^{-1}[Y]]$.
+  \qed
+\end{proof}
+
+\section*{Exercise 8}
+
+\begin{lemma}
+  Let $A$ be a set of functions such that
+  $\forall f \in A: \forall g \in A: (f \subseteq g \lor g \subseteq f)$.
+  Then $\bigcup A$ is a function.
+\end{lemma}
+\begin{proof}
+  Let $v \in \bigcup A$. We will show that $v$ is an ordered pair. Indeed,
+  there is some $f \in A$ such that $v \in f$. By virtue of $f$ being a
+  relation, $v$ is an ordered pair. Therefore $\bigcup A$ is a relation.
+
+  Consider two ordered pairs
+  $\left<x, y_1\right>, \left<x, y_2\right> \in \bigcup A$. Then there are
+  $f, g \in A$ such that $\left<x, y_1\right> \in f$ and
+  $\left<x, y_2\right> \in g$. Suppose without loss of generality that
+  $f \subseteq g$. Then $\left<x, y_1\right> \in g$. Therefore, $y_1 = y_2$ and
+  $\bigcup A$ is a function.
+  \qed
+\end{proof}
+
+\begin{lemma}
+  $\forall A: \forall f: (f \in A \rightarrow f \subseteq \bigcup A)$.
+\end{lemma}
+\begin{proof}
+  Let arbitrary $A$ and $f$ such that $f \in A$. Consider an arbitrary
+  $x \in f$. We will show that $x \in \bigcup A$. It suffices to show that there
+  exists some $g \in A$ such that $x \in g$. But $g = f$.
+  \qed
+\end{proof}
+
+\section*{Exercise 9}
+
+Let $f: X \longrightarrow Y$ be a function. Let $I \neq \emptyset$. Let
+$(A_i)_{i \in I}$ be a family of subsets of $X$ and $(B_i)_{i \in I}$ be a
+family of subsets of $Y$. The following lemmas establish the commutativity of
+function application and arbitrary union or intersection.
+
+\begin{lemma}
+  Let $f, A, B, I$ be as above. Then
+  $f[\bigcup (A_i)_{i \in I}] = \bigcup (f[A_i])_{i \in I}$.
+\end{lemma}
+\begin{proof}
+  \begin{alignat*}{3}
+                         && y \in f[\bigcup (A_i)_{i \in I}]\\
+     &\Leftrightarrow\quad & \exists x \in X: (\left<x, y\right> \in f \land x \in \bigcup (A_i)_{i \in I})\\
+     &\Leftrightarrow\quad & \exists x \in X: (\left<x, y\right> \in f \land \exists i \in I: x \in A_i)\\
+     &\Leftrightarrow\quad & \exists i \in I: \exists x \in X: (\left<x, y\right> \in f \land x \in A_i)\\
+     &\Leftrightarrow\quad & \exists i \in I: y \in f[A_i])\\
+     &\Leftrightarrow\quad & y \in \bigcup (f[A_i])_{i \in I}
+  \end{alignat*}
+  \qed
+\end{proof}
+
+\begin{lemma}
+  Let $f, A, B, I$ be as above. Then
+  $f[\bigcap (A_i)_{i \in I}] \subseteq \bigcap (f[A_i])_{i \in I}$.
+\end{lemma}
+\begin{proof}
+  \begin{alignat*}{3}
+                         && y \in f[\bigcap (A_i)_{i \in I}]\\
+     &\Leftrightarrow\quad & \exists x \in X: (\left<x, y\right> \in f \land x \in \bigcap (A_i)_{i \in I})\\
+     &\Leftrightarrow\quad & \exists x \in X: (\left<x, y\right> \in f \land \forall i \in I: x \in A_i)\\
+     &\Rightarrow\quad & \forall i \in I: \exists x \in X: (\left<x, y\right> \in f \land x \in A_i)\\
+     &\Leftrightarrow\quad & \forall i \in I: y \in f[A_i])\\
+     &\Leftrightarrow\quad & y \in \bigcap (f[A_i])_{i \in I}
+  \end{alignat*}
+  \qed
+\end{proof}
+
+Equality will hold if every element $y$ of $Y$ has the property that either it
+is not the image of some $A_i$, or one of its pre-images belongs to all $A_i$.
+
+\begin{lemma}\label{lem:commutativity-inverse-cup}
+  Let $f, A, B, I$ be as above. Then
+  $f^{-1}[\bigcup (B_i)_{i \in I}] = \bigcup (f^{-1}[B_i])_{i \in I}$.
+\end{lemma}
+\begin{proof}
+  \begin{alignat*}{3}
+                         && x \in f^{-1}[\bigcup (B_i)_{i \in I}]\\
+     &\Leftrightarrow\quad & \exists y \in Y: (\left<y, x\right> \in f^{-1} \land y \in \bigcap (B_i)_{i \in I})\\
+     &\Leftrightarrow\quad & \exists y \in Y: (\left<y, x\right> \in f^{-1} \land \exists i \in I: y \in B_i)\\
+     &\Leftrightarrow\quad & \exists i \in I: \exists y \in Y: (\left<y, x\right> \in f^{-1} \land y \in B_i)\\
+     &\Leftrightarrow\quad & \forall i \in I: y \in f[B_i])\\
+     &\Leftrightarrow\quad & y \in \bigcap (f[B_i])_{i \in I}
+  \end{alignat*}
+  \qed
+\end{proof}
+
+\begin{lemma}
+  Let $f, A, B, I$ be as above. Then
+  $f^{-1}[\bigcup (B_i)_{i \in I}] = \bigcup (f^{-1}[B_i])_{i \in I}$.
+\end{lemma}
+\begin{proof}
+  The proof follows from Lemma~\ref{lem:commutativity-inverse-cup}, as the
+  two statements are identical.
+  \qed
+\end{proof}
+
+\section*{Exercise 10}
+
+\begin{lemma}
+  Let $f$ be an isomorphism between posets $\left<A, \preccurlyeq_A\right>,
+  \left<B, \preccurlyeq_B\right>$.
+  Then $f$ preserves maximal, maximum, minimal and minimum elements, as well
+  as linearity.
+\end{lemma}
+\begin{proof}
+  \item
+  \textbf{Preserving extrema.}
+  Suppose $a$ is a minimal element of $A$. Then
+  $\nexists a' \in A: a' \preccurlyeq_A a$.
+  Suppose for contradiction that $f(a)$ were not minimal. Then there would exist
+  some $b' \in B$ such that $b' \preccurlyeq_B b$. But by the isomorphism
+  there would exist some $a'$ with $f(a') = b'$ such that $a' \preccurlyeq_A a$,
+  which is a contradiction.
+
+  The other three cases are treated identically:
+  \begin{itemize}
+  \item Let $a$ be maximal. Then
+  $\nexists a' \in A: a \preccurlyeq_A a'$. So
+  $\nexists b' \in B: b \preccurlyeq_B b'$ and $b$ is maximal.
+
+  \item Let $a$ be the minimum. Then
+  $\forall a' \in A: a \preccurlyeq a'$. So
+  $\forall b' \in B: b \preccurlyeq b'$ and $b'$ is minimum.
+
+  \item Let $a$ be the maximum. Then
+  $\forall a' \in A: a' \preccurlyeq a$. So
+  $\forall b' \in B: b' \preccurlyeq b$ and $b$ is maximum.
+  \end{itemize}
+
+  \item
+  \textbf{Preserving linearity.}
+  Let $\preccurlyeq_A$ be linear. Suppose for contradiction that there exist
+  $b_1, b_2$ in $B$ such that
+  $b_1 \not\preccurlyeq_B b_2 \land b_2 \not\preccurlyeq_B b_1$.
+  But then $f^{-1}(b_1) \not\preccurlyeq_A f^{-1}(b_2) \land f^{-1}(b_2)
+  \not\preccurlyeq_A f^{-1}(b_1)$. Therefore $\preccurlyeq_A$ is not linear,
+  which is a contradiction.
+  \qed
+\end{proof}
+
+\section*{Exercise 11}
+\begin{lemma}
+  Let $\left<A, \preccurlyeq_A\right>, \left<B, \preccurlyeq_B\right>$ be posets
+  and $f: A \longrightarrow B$ be a function such that
+
+  \[
+  \forall x \in A: \forall y \in B:
+  (x \preccurlyeq_A y \leftrightarrow f(x) \preccurlyeq_B f(y))
+  ~.
+  \]
+
+  Then $f$ is one-to-one.
+\end{lemma}
+\begin{proof}
+  Suppose for contradiction that $f$ is not one-to-one. Then there are
+  $x_1, x_2 \in A$ such that $x_1 \neq x_2$ and $f(x_1) = f(x_2)$. From the
+  \emph{reflexivity} of $\preccurlyeq_B$, we have $f(x_1) \preccurlyeq_B
+  f(x_2)$ and so $x_1 \preccurlyeq_A x_2$. But also $f(x_2) \preccurlyeq_B
+  f(x_1)$ and so $x_2 \preccurlyeq_A x_1$. By the \emph{antisymmetry} of
+  $\preccurlyeq_A$ we have that $x_1 = x_2$ which is a contradiction.
+  \qed
+\end{proof}
+
+\end{document}
